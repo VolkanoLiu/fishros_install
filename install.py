@@ -35,7 +35,7 @@ tools ={
     15: {'tip':'一键安装:QQ for Linux', 'type':INSTALL_SOFTWARE, 'tool': 'tools/tool_install_qq.py', 'dep':[]},
     16: {'tip':'一键安装:系统自带ROS (！！警告！！仅供特殊情况下使用)', 'type':INSTALL_ROS, 'tool': 'tools/tool_install_ros1_systemdefault.py', 'dep':[5]},
     17: {'tip':'一键配置:Docker代理(支持VPN+代理服务两种模式)', 'type':CONFIG_TOOL, 'tool': 'tools/tool_config_docker_proxy.py', 'dep':[]},
-    18: {'tip':'一键安装:机器人额外依赖', 'type':INSTALL_SOFTWARE, 'tool': 'tools/tool_install_alternative_deps.py', 'dep':[4,5]},
+    18: {'tip':'一键安装:机器人额外依赖', 'type':INSTALL_SOFTWARE, 'tool': 'tools/tool_install_alternative_deps.py', 'dep':[3,4,5]},
     }
 # 
 
