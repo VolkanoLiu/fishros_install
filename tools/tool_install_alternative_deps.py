@@ -16,6 +16,7 @@ class Tool(BaseTool):
         CmdTask("sudo apt update",os_command=True).run()
 
         PrintUtils.print_info("开始安装package.xml依赖...")
+        CmdTask("rosdepc update",os_command=True).run()
         CmdTask("rosdepc install --from-paths deps --ignore-src -r -y",os_command=True).run()
 
         PrintUtils.print_info("开始安装gstreamer...")
