@@ -96,8 +96,8 @@ WantedBy=multi-user.target
         if FileUtils.exists(mediamtx_service_path_full):
             FileUtils.delete(mediamtx_service_path_full)
         FileUtils.new(path=service_path, name=mediamtx_service_name, data=service)
-        CmdTask("sudo systemctl enable mosquitto.service").run()
-        CmdTask("sudo systemctl restart mosquitto.service").run()
+        CmdTask("sudo systemctl enable mediamtx.service").run()
+        CmdTask("sudo systemctl restart mediamtx.service").run()
 
     def run(self):
         self.install_alternative_deps()
