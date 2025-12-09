@@ -76,32 +76,35 @@ class Linguist:
         return self.country == 'CN'
     
     def getLocalFromIP(self) -> str:
-        local_str = ""
-        temp_file = "/tmp/fishros_check_country.json"
-        try:
-            # Add timeout for IP detection
-            result = subprocess.run(["wget", "--header=Accept: application/json", "--no-check-certificate", 
-                                   "https://ip.renfei.net/", "-O", temp_file, "-qq", "--timeout=10"], 
-                                  capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                with open(temp_file, 'r') as json_file:  
-                    data = json.loads(json_file.read())
-                    self.ip_info = data
-                    self.country = data['location']['countryCode']
-                    if data['location']['countryCode'] in COUNTRY_CODE_MAPPING:
-                        local_str = COUNTRY_CODE_MAPPING[data['location']['countryCode']]
-                    else:
-                        local_str = "en_US"
-            else:
-                local_str = "en_US"
-        except Exception:
-            local_str = "en_US"
-        finally:
-            try:
-                os.remove(temp_file)
-            except:
-                pass
+        # local_str = ""
+        # temp_file = "/tmp/fishros_check_country.json"
+        # try:
+        #     # Add timeout for IP detection
+        #     result = subprocess.run(["wget", "--header=Accept: application/json", "--no-check-certificate", 
+        #                            "https://ip.renfei.net/", "-O", temp_file, "-qq", "--timeout=10"], 
+        #                           capture_output=True, text=True, timeout=15)
+        #     if result.returncode == 0:
+        #         with open(temp_file, 'r') as json_file:  
+        #             data = json.loads(json_file.read())
+        #             self.ip_info = data
+        #             self.country = data['location']['countryCode']
+        #             if data['location']['countryCode'] in COUNTRY_CODE_MAPPING:
+        #                 local_str = COUNTRY_CODE_MAPPING[data['location']['countryCode']]
+        #             else:
+        #                 local_str = "en_US"
+        #     else:
+        #         local_str = "en_US"
+        # except Exception:
+        #     local_str = "en_US"
+        # finally:
+        #     try:
+        #         os.remove(temp_file)
+        #     except:
+        #         pass
 
+        # Force to China region
+        self.country = "CN"
+        local_str = "zh_CN"
         return local_str
 
 if __name__ == "__main__":
