@@ -379,7 +379,7 @@ class Tool(BaseTool):
         code,rosname = ChooseTask(ros_name.keys(),"请选择你要安装的ROS版本名称(请注意ROS1和ROS2区别):",True).run()
         if code==0: 
             PrintUtils.print_error("你选择退出")
-            PrintUtils.print_delay('是因为没有自己想要的ROS版本吗？ROS版本和操作系统版本是有对应关系的哦，所以可能是你的系统版本{}不对!具体请查看：https://fishros.org.cn/forum/topic/96'.format(str(str(osversion.get_name())+str(osversion.get_version()))))
+            PrintUtils.print_delay('是因为没有自己想要的ROS版本吗？ROS版本和操作系统版本是有对应关系的哦，所以可能是你的系统版本{}不对!具体请查看：https://fishros.org.cn/forum/topic/96'.format(str(str(osversion.get_name())+str(osversion.get_version()))),0.001)
             return False
         version_dic = {1:rosname+"桌面版",2:rosname+"基础版(小)"}
         code,name = ChooseTask(version_dic,"请选择安装的具体版本(如果不知道怎么选,请选1桌面版):",False).run()
@@ -406,7 +406,7 @@ class Tool(BaseTool):
             if FileUtils.check_result(cmd_result,['未满足的依赖关系','unmet dependencies','but it is not installable']):
                 # 尝试使用aptitude解决依赖问题
                 PrintUtils.print_warn("============================================================")
-                PrintUtils.print_delay("请注意我，检测你在安装过程中出现依赖问题，请在稍后输入n,再选择y,即可解决")
+                PrintUtils.print_delay("请注意我，检测你在安装过程中出现依赖问题，请在稍后输入n,再选择y,即可解决",0.001)
                 import time
                 input("确认了解情况，请输入回车继续安装")
                 cmd_result = CmdTask("sudo {} install   {} ".format(install_tool,dic_base[install_version]),300,os_command=True).run()
@@ -419,7 +419,7 @@ class Tool(BaseTool):
             if FileUtils.check_result(cmd_result,['未满足的依赖关系','unmet dependencies','but it is not installable']):
                 # 尝试使用aptitude解决依赖问题
                 PrintUtils.print_warn("============================================================")
-                PrintUtils.print_delay("请注意我，检测你在安装过程中出现依赖问题，请在稍后输入n,再选择y,即可解决（若无法解决，清在稍后手动运行命令: sudo aptitude install {})".format(RosVersions.get_desktop_version(install_version)))
+                PrintUtils.print_delay("请注意我，检测你在安装过程中出现依赖问题，请在稍后输入n,再选择y,即可解决（若无法解决，清在稍后手动运行命令: sudo aptitude install {})".format(RosVersions.get_desktop_version(install_version)),0.001)
                 import time
                 input("确认了解情况，请输入回车继续安装")
                 cmd_result = CmdTask("sudo {} install   {}".format(install_tool,RosVersions.get_desktop_version(install_version)),300,os_command=True).run()
@@ -449,7 +449,7 @@ class Tool(BaseTool):
 
 
     def install_ros(self):
-        PrintUtils.print_delay('欢迎使用ROS开箱子工具，本工具由[鱼香ROS]小鱼贡献..')
+        PrintUtils.print_delay('欢迎使用ROS开箱子工具，本工具由[鱼香ROS]小鱼贡献..',0.001)
         if not self.support_install(): return False
 
         self.check_sys_source()

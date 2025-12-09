@@ -1106,7 +1106,7 @@ class ChooseTask(Task):
         # 0 quit
         choose = -1 
         for key in dic:
-            PrintUtils.print_delay('[{}]:{}'.format(key,tr.tr(dic[key])),0.005)
+            PrintUtils.print_delay('[{}]:{}'.format(key,tr.tr(dic[key])),0.001)
             
         choose = None
         choose_item = config_helper.get_input_value()
@@ -1137,7 +1137,7 @@ class ChooseTask(Task):
         return choose,dic[choose]
 
     def run(self):
-        PrintUtils.print_delay(tr.tr("RUN Choose Task:[请输入括号内的数字]"))
+        PrintUtils.print_delay(tr.tr("RUN Choose Task:[请输入括号内的数字]"),0.001)
         PrintUtils.print_delay(self.tips,0.001)
         return ChooseTask.__choose(self.dic,self.tips,self.array)
 
@@ -1160,13 +1160,13 @@ class ChooseWithCategoriesTask(Task):
         tool_ids = [0]
         # 打印不同类型工具的分类结果
         for tool_type, tools_list in dic.items():
-            PrintUtils.print_delay("{}:".format(tr.tr(categories[tool_type])),0.005)
+            PrintUtils.print_delay("{}:".format(tr.tr(categories[tool_type])),0.001)
             sortkeys = sorted(tools_list.keys())
             for tool_id in sortkeys:
-                PrintUtils.print_delay("  [{}]:{}".format(tool_id,tr.tr(tools_list[tool_id]['tip'])),0.005)
+                PrintUtils.print_delay("  [{}]:{}".format(tool_id,tr.tr(tools_list[tool_id]['tip'])),0.001)
                 tool_ids.append(tool_id)
             print()
-        PrintUtils.print_delay("[0]:quit\n",0.005)
+        PrintUtils.print_delay("[0]:quit\n",0.001)
 
         choose = None
         choose_item = config_helper.get_input_value()
@@ -1197,7 +1197,7 @@ class ChooseWithCategoriesTask(Task):
         return choose_id,""
 
     def run(self):
-        PrintUtils.print_delay(tr.tr("RUN Choose Task:[请输入括号内的数字]"))
+        PrintUtils.print_delay(tr.tr("RUN Choose Task:[请输入括号内的数字]"),0.001)
         PrintUtils.print_delay(self.tips,0.001)
         return ChooseWithCategoriesTask.__choose(self.dic,self.tips,self.array,self.categories)
 
@@ -1464,7 +1464,7 @@ class AptUtils():
             while FileUtils.check_result(result,['未满足的依赖关系','unmet dependencies']):
                 # 尝试使用aptitude解决依赖问题
                 PrintUtils.print_warn("============================================================")
-                PrintUtils.print_delay(tr.tr("请注意我，检测你在安装过程中出现依赖问题，请在稍后选择解决方案（第一个解决方案不一定可以解决问题，如再遇到可以采用下一个解决方案）,即可解决"))
+                PrintUtils.print_delay(tr.tr("请注意我，检测你在安装过程中出现依赖问题，请在稍后选择解决方案（第一个解决方案不一定可以解决问题，如再遇到可以采用下一个解决方案）,即可解决"),0.001)
                 input(tr.tr("确认了解上述情况，请输入回车继续安装"))
                 result = AptUtils.install_pkg(name,apt_tool="aptitude", os_command = True, auto_yes=False)
                 result = AptUtils.install_pkg(name,apt_tool="aptitude", os_command = False, auto_yes=True)
@@ -1530,7 +1530,7 @@ class BaseTool():
 
     def init(self):
         # 初始化部分
-        PrintUtils.print_delay(tr.tr("欢迎使用{},本工具由作者{}提供").format(self.name,self.author))
+        PrintUtils.print_delay(tr.tr("欢迎使用{},本工具由作者{}提供").format(self.name,self.author),0.001)
     
     def run(self):
         # 运行该任务

@@ -151,8 +151,8 @@ class Tool(BaseTool):
             if arch=='amd64':
                 template = debian_amd64_sources_template
                 sources = debian_amd64_sources
-        PrintUtils.print_delay('搜索到可用源:{}'.format(sources),0.002)
-        PrintUtils.print_delay('接下来将进行自动测速以为您选择最快的源:')
+        PrintUtils.print_delay('搜索到可用源:{}'.format(sources),0.001)
+        PrintUtils.print_delay('接下来将进行自动测速以为您选择最快的源:',0.001)
         fast_source = AptUtils.get_fast_url(sources)
         
         # 如果需要返回所有源和模板（不进行测速）
@@ -253,7 +253,7 @@ class Tool(BaseTool):
         else:
             return None
         
-        PrintUtils.print_delay('检测到当前系统:{} 架构:{} 代号:{},正在为你搜索适合的源...'.format(system,arch,codename))
+        PrintUtils.print_delay('检测到当前系统:{} 架构:{} 代号:{},正在为你搜索适合的源...'.format(system,arch,codename),0.001)
         
         # 根据用户选择的方式获取源
         if hasattr(self, 'source_method_code'):
@@ -301,7 +301,7 @@ class Tool(BaseTool):
         failed_sources = []
         source = self.replace_source(failed_sources)
         if source:
-            PrintUtils.print_delay("替换镜像源完成，尝试进行更新....")
+            PrintUtils.print_delay("替换镜像源完成，尝试进行更新....",0.001)
             result = CmdTask('sudo apt update',100).run()
             
             # 如果是手动选择源且更新失败，提示用户重新选择

@@ -36,7 +36,7 @@ class Tool(BaseTool):
         shell_file = ".{}rc".format(shell)
         for userhome in usershomes:
             shell_path = os.path.join(userhome,shell_file)
-            PrintUtils.print_delay('正在准备配置用户目录:{}'.format(shell_path))
+            PrintUtils.print_delay('正在准备配置用户目录:{}'.format(shell_path),0.001)
             if FileUtils.exists(shell_path):
                 PrintUtils.print_info('当前系统包含{}个ROS,已为您完成启动终端自动激活ROS环境,修改{}可关闭'.format(ros_count,shell_path))
                 if ros_count>1:

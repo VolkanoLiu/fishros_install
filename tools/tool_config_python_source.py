@@ -39,4 +39,4 @@ class Tool(BaseTool):
             # Verify pip configuration
             # CmdTask('pip config list').run()
 
-        PrintUtils.print_delay('配置成功（如果使用国内源下载包，记得关闭代理）')
+        PrintUtils.print_delay('配置成功（如果使用国内源下载包，记得关闭代理）',0.001)
