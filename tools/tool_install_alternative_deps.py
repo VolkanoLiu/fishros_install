@@ -45,6 +45,8 @@ allow_anonymous true
             if user_input.lower() in ['y', 'yes']:
                 FileUtils.delete(mosquitto_conf_path_full)
                 FileUtils.new(path=mosquitto_conf_path, name=mosquitto_conf_name, data=conf)
+        else:
+            FileUtils.new(path=mosquitto_conf_path, name=mosquitto_conf_name, data=conf)
         CmdTask("sudo systemctl restart mosquitto.service").run()
 
         PrintUtils.print_info("开始安装mediamtx...")
